@@ -6,27 +6,38 @@
 
 int main()
 {
-    uint8_t tbl[125];
-    init_bit_table(&tbl[0], 1000);
+    char tbl[125];
+    const int tbl_size = 1000;
+    int a, cur_idx=0;
+    // initialise all table contents to zero
+    clear_table(&tbl[0], tbl_size);
 
-    clear_table();
+    // set a specific bit in the table
+    set_table_item(&tbl[0], tbl_size, 8);
+    set_table_item(&tbl[0], 43, tbl_size);
 
-    set_table_item(9);
-    set_table_item(43);
-    set_table_item(798);
-    set_table_item(645);
+    set_table_item(&tbl[0], tbl_size, 111);
+    set_table_item(&tbl[0], tbl_size, 397);
 
-    print_table();
+    // print the table on console
+    print_table(&tbl[0], tbl_size);
 
-    int a;
-    search_set_table_item(&a);
+    // get total number of set items in the table
+    count_set_table_items(&tbl[0], tbl_size, &a);
+    printf("\nnumber of set items = %d\n", a);
+
+    // get one set_item from the table and its index; passing this index again will begin search from this index
+    next_set_table_item(&tbl[0], tbl_size, &cur_idx, &a);
     printf("\nEarliest set value in table: %d\n", a);
-    next_set_table_item(&a);
-    printf("Next set value in table: %d\n", a);
-    next_set_table_item(&a);
-    printf("Next set value in table: %d\n", a);
-    next_set_table_item(&a);
-    printf("Next set value in table: %d\n", a);
+
+    next_set_table_item(&tbl[0], tbl_size, &cur_idx, &a);
+    printf("\nEarliest set value in table: %d\n", a);
+
+    next_set_table_item(&tbl[0], tbl_size, &cur_idx, &a);
+    printf("\nEarliest set value in table: %d\n", a);
+
+    next_set_table_item(&tbl[0], tbl_size, &cur_idx, &a);
+    printf("\nEarliest set value in table: %d\n", a);
 
     return 0;
 }

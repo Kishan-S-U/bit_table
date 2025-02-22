@@ -36,3 +36,6 @@ Currently, this library is capable of enabling control over a single-bit table. 
 3. Navigate to 'bit_table/output_files' folder and run examples. [This folder contains executable files].
 
 Note: These example programs are present in 'bit_table/examples' folder. 
+
+### Important Note
+The size of a bit_table should be in a multiple of 8. Otherwise, a bit_table will not be created and parsed properly.
